@@ -1,5 +1,6 @@
 package fatec.lab4.activity.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,12 +14,9 @@ public class RacaoService {
     
     // cadastra uma nova ração
     public Racao inserRacao(Racao racao) {
-        if (racao.getMarca() == null ||
-            racao.getMarca().isBlank() ||
-            racao.getDataHoraUltimaCompra() == null ||
-            racao.getQuantidadeEstoque() < 0 ||
-            racao.getNota() < 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "erro");
+        if (racao.getDataHoraUltimaCompra() == null) {
+            LocalDateTime lDateTime = LocalDateTime.now();            
+            racao.setDataHoraUltimaCompra(lDateTime);
         }
         return racaoRepo.save(racao);
     }
