@@ -26,15 +26,15 @@ public class Racao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "rec_marca", nullable = false, length = 100, unique = true)
+    @Column(name = "rac_marca", unique = true)
     private String marca;
 
-    @Column(name = "rac_data_hora_ultima_compra", nullable = false)
+    @Column(name = "rac_data_hora_ultima_compra")
     private LocalDateTime dataHoraUltimaCompra;
 
     @Column(name = "rac_quantidade_estoque", columnDefinition = "DECIMAL(10, 2)")
-    private double quantidadeEstoque;
+    private Double quantidadeEstoque;
 
-    @Column(name = "rac_nota", nullable = false)
-    private int nota;
+    @Column(name = "rac_nota")
+    private Integer nota;
 }

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import fatec.lab4.activity.entity.Racao;
 
 public interface RacaoRepository extends JpaRepository<Racao, Long>{
-    
-    @Query("select r from Racao r where r.nota > ?1 and r.quantidadeEstoque < ?2")
-    public List<Racao> findRacaoByEstoqueNota(int nota, double estoque);
+    @Query("select r from Racao r where r.quantidadeEstoque < ?1 and r.nota > ?2")
+    public List<Racao> findRacaoByEstoqueNota(Double estoque, Integer nota);
 }

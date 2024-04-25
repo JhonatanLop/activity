@@ -3,17 +3,19 @@ package fatec.lab4.activity.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fatec.lab4.activity.entity.Racao;
 import fatec.lab4.activity.repository.RacaoRepository;
 
+@Service
 public class RacaoService {
+    @Autowired
     private RacaoRepository racaoRepo;
     
     // cadastra uma nova ração
-    public Racao inserRacao(Racao racao) {
+    public Racao insertRacao(Racao racao) {
         if (racao.getDataHoraUltimaCompra() == null) {
             LocalDateTime lDateTime = LocalDateTime.now();            
             racao.setDataHoraUltimaCompra(lDateTime);
@@ -27,8 +29,8 @@ public class RacaoService {
     }
 
     // traz todos os registos dentro das regras da query
-    public List<Racao> findRacaoByEstoqueNota(int nota, double quantidadeEstoque){
-        return racaoRepo.findRacaoByEstoqueNota(nota, quantidadeEstoque);
+    public List<Racao> findRacaoByEstoqueNota(Double quantidadeEstoque, Integer nota){
+        return racaoRepo.findRacaoByEstoqueNota(quantidadeEstoque, nota);
     }
 
 }
